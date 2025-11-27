@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Магазин электроники</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop"></i>
+                    TechStore
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Поиск товаров...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-user"></i>
+                        <span>Профиль</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Избранное</span>
+                    </button>
+                    <button class="action-btn cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Корзина</span>
+                        <span class="cart-count">3</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="#"><i class="fas fa-mobile-alt"></i> Смартфоны</a></li>
+                    <li><a href="#"><i class="fas fa-laptop"></i> Ноутбуки</a></li>
+                    <li><a href="#"><i class="fas fa-tv"></i> Телевизоры</a></li>
+                    <li><a href="#"><i class="fas fa-headphones"></i> Аудио</a></li>
+                    <li><a href="#"><i class="fas fa-gamepad"></i> Гаджеты</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> Аксессуары</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Новейшая техника по лучшим ценам</h1>
+                <p>Откройте для себя мир технологий с нашими эксклюзивными предложениями. Гарантия качества, быстрая доставка и профессиональная поддержка.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">В каталог</a>
+                    <a href="#" class="btn btn-secondary">Акции</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Категории товаров</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Смартфоны</h3>
+                    <p>Последние модели 2024</p>
+                    <span class="category-count">256 товаров</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Ноутбуки</h3>
+                    <p>Для работы и игр</p>
+                    <span class="category-count">189 товаров</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3>Аудиотехника</h3>
+                    <p>Наушники и колонки</p>
+                    <span class="category-count">312 товаров</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3>Телевизоры</h3>
+                    <p>4K и 8K модели</p>
+                    <span class="category-count">147 товаров</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Популярные товары</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">-15%</div>
+                    <div class="product-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>iPhone 15 Pro</h3>
+                        <p>Новый флагман от Apple с улучшенной камерой</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(128 отзывов)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">89 999 ₽</span>
+                            <span class="old-price">99 999 ₽</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart">В корзину</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge new">Новинка</div>
+                    <div class="product-image">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>MacBook Air M2</h3>
+                        <p>Мощность и портативность в одном устройстве</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(95 отзывов)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">129 999 ₽</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart">В корзину</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge">-20%</div>
+                    <div class="product-image">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sony WH-1000XM4</h3>
+                        <p>Беспроводные наушники с шумоподавлением</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(204 отзыва)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">24 999 ₽</span>
+                            <span class="old-price">29 999 ₽</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart">В корзину</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>PlayStation 5</h3>
+                        <p>Игровая консоль нового поколения</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(312 отзывов)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">49 999 ₽</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart">В корзину</button>
+                            <button class="btn-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставляем заказы по всей России за 1-3 дня</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Гарантия качества</h3>
+                    <p>Все товары проходят тщательную проверку</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Наша служба поддержки всегда на связи</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>Легкий возврат</h3>
+                    <p>Возврат товара в течение 30 дней</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Подпишитесь на рассылку</h2>
+                <p>Получайте первыми информацию о новых поступлениях и специальных предложениях</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Ваш email" required>
+                    <button type="submit" class="btn btn-primary">Подписаться</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-laptop"></i>
+                        TechStore
+                    </div>
+                    <p class="footer-description">Лучший выбор электроники по доступным ценам. Мы заботимся о каждом клиенте.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Категории</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Смартфоны</a></li>
+                        <li><a href="#">Ноутбуки</a></li>
+                        <li><a href="#">Телевизоры</a></li>
+                        <li><a href="#">Аудиотехника</a></li>
+                        <li><a href="#">Гаджеты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Помощь</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Гарантия</a></li>
+                        <li><a href="#">Возврат товара</a></li>
+                        <li><a href="#">Частые вопросы</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links contact-info">
+                        <li><i class="fas fa-phone"></i> 8 (800) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@techstore.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Технологическая, 15</li>
+                        <li><i class="fas fa-clock"></i> Пн-Вс: 9:00-21:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechStore. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
