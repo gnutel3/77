@@ -1,187 +1,152 @@
-// Дополнения к основному скрипту для работы навигации
+// script.js - для интерактивности
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Мобильное меню
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const mobileNavClose = document.querySelector('.mobile-nav-close');
-    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    // Установка текущего года в футере
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
     
-    // Открытие мобильного меню
-    mobileMenuBtn.addEventListener('click', function() {
-        mobileNav.classList.add('active');
-        mobileNavOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    // Плавная прокрутка к разделам при клике на пункты меню
+    const menuLinks = document.querySelectorAll('.menu a[href^="#"]');
+    
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Скрываем меню на мобильных устройствах
+                const menu = document.querySelector('.menu');
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                }
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
     
-    // Закрытие мобильного меню
-    function closeMobileMenu() {
-        mobileNav.classList.remove('active');
-        mobileNavOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        
-        // Закрываем все подменю
-        document.querySelectorAll('.mobile-submenu').forEach(submenu => {
-            submenu.classList.remove('active');
-        });
-        document.querySelectorAll('.has-submenu').forEach(item => {
-            item.classList.remove('active');
+    // Бургер-меню для мобильных устройств
+    const burgerMenu = document.querySelector('.burger-menu');
+    const menu = document.querySelector('.menu');
+    
+    if (burgerMenu) {
+        burgerMenu.addEventListener('click', function() {
+            menu.classList.toggle('active');
         });
     }
     
-    mobileNavClose.addEventListener('click', closeMobileMenu);
-    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+    // Валидация формы обратной связи
+    const feedbackForm = document.getElementById('feedbackForm');
     
-    // Подменю в мобильной навигации
-    const mobileSubmenuItems = document.querySelectorAll('.has-submenu');
-    
-    mobileSubmenuItems.forEach(item => {
-        const link = item.querySelector('.mobile-nav-link');
-        
-        link.addEventListener('click', function(e) {
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const submenu = item.querySelector('.mobile-submenu');
             
-            // Закрываем другие подменю
-            mobileSubmenuItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.mobile-submenu').classList.remove('active');
-                }
-            });
+            // Сброс предыдущих ошибок
+            clearErrors();
             
-            // Переключаем текущее подменю
-            item.classList.toggle('active');
-            submenu.classList.toggle('active');
-        });
-    });
-    
-    // Активное состояние для навигационных ссылок
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Убираем активный класс у всех ссылок
-            navLinks.forEach(l => l.classList.remove('active'));
-            // Добавляем активный класс к текущей ссылке
-            this.classList.add('active');
-        });
-    });
-    
-    // Закрытие выпадающих меню при клике вне их
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-item')) {
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.style.opacity = '0';
-                menu.style.visibility = 'hidden';
-            });
-        }
-    });
-    
-    // Плавное появление выпадающих меню
-    const navItems = document.querySelectorAll('.nav-item');
-    
-    navItems.forEach(item => {
-        const dropdown = item.querySelector('.dropdown-menu');
-        
-        if (dropdown) {
-            item.addEventListener('mouseenter', function() {
-                dropdown.style.opacity = '1';
-                dropdown.style.visibility = 'visible';
-                dropdown.style.transform = 'translateX(-50%) translateY(0)';
-            });
+            // Получение значений полей
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
             
-            item.addEventListener('mouseleave', function() {
-                dropdown.style.opacity = '0';
-                dropdown.style.visibility = 'hidden';
-                dropdown.style.transform = 'translateX(-50%) translateY(-10px)';
-            });
-        }
-    });
-    
-    // Поиск в реальном времени (заглушка)
-    const searchInput = document.querySelector('.search-bar input');
-    
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        if (searchTerm.length > 2) {
-            // Здесь будет логика поиска
-            console.log('Поиск:', searchTerm);
-        }
-    });
-    
-    // Обработка отправки формы поиска
-    const searchForm = document.querySelector('.search-bar');
-    searchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const searchTerm = searchInput.value.trim();
-        if (searchTerm) {
-            alert(`Поиск: ${searchTerm}`);
-            // Здесь будет редирект на страницу поиска
-        }
-    });
-    
-    // Добавляем класс для активной страницы
-    function setActivePage() {
-        const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-        
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && currentPath.includes(href.replace('/', ''))) {
-                link.classList.add('active');
+            let isValid = true;
+            
+            // Валидация имени
+            if (name === '') {
+                showError('nameError', 'Пожалуйста, введите ваше имя');
+                isValid = false;
+            }
+            
+            // Валидация email
+            if (email === '') {
+                showError('emailError', 'Пожалуйста, введите ваш email');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('emailError', 'Пожалуйста, введите корректный email (с символом @)');
+                isValid = false;
+            }
+            
+            // Валидация сообщения
+            if (message === '') {
+                showError('messageError', 'Пожалуйста, введите ваше сообщение');
+                isValid = false;
+            }
+            
+            // Если форма валидна, отправляем
+            if (isValid) {
+                // Здесь обычно отправка данных на сервер
+                // Для демонстрации просто покажем сообщение об успехе
+                showFormMessage('Ваше сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
+                feedbackForm.reset();
+                
+                // Скрываем сообщение через 5 секунд
+                setTimeout(() => {
+                    document.getElementById('formMessage').textContent = '';
+                    document.getElementById('formMessage').className = 'form-message';
+                }, 5000);
             }
         });
     }
     
-    setActivePage();
+    // Функция валидации email
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
     
-    // Показать/скрыть поиск на мобильных устройствах
-    function initMobileSearch() {
-        const searchBar = document.querySelector('.search-bar');
-        const searchBtn = document.querySelector('.search-btn');
+    // Функция показа ошибки
+    function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+    }
+    
+    // Функция очистки ошибок
+    function clearErrors() {
+        const errorElements = document.querySelectorAll('.error-message');
+        errorElements.forEach(element => {
+            element.textContent = '';
+        });
         
-        if (window.innerWidth <= 768) {
-            searchBar.classList.add('mobile-search');
-            searchBtn.addEventListener('click', function() {
-                searchBar.classList.toggle('active');
-            });
-        }
+        const formMessage = document.getElementById('formMessage');
+        formMessage.textContent = '';
+        formMessage.className = 'form-message';
     }
     
-    initMobileSearch();
-    window.addEventListener('resize', initMobileSearch);
+    // Функция показа сообщения формы
+    function showFormMessage(message, type) {
+        const formMessage = document.getElementById('formMessage');
+        formMessage.textContent = message;
+        formMessage.className = `form-message ${type}`;
+    }
+    
+    // Анимация при скролле
+    const animatedElements = document.querySelectorAll('.product-card, .about-content');
+    
+    function checkScroll() {
+        animatedElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    }
+    
+    // Изначально скрываем элементы для анимации
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.5s, transform 0.5s';
+    });
+    
+    window.addEventListener('scroll', checkScroll);
+    checkScroll(); // Проверяем при загрузке
 });
-
-// Добавляем стили для мобильного поиска
-const mobileSearchStyles = `
-@media (max-width: 768px) {
-    .search-bar.mobile-search {
-        position: relative;
-    }
-    
-    .search-bar.mobile-search input {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    .search-bar.mobile-search.active input {
-        display: block;
-    }
-    
-    .search-bar.mobile-search .search-btn {
-        border-radius: 8px;
-    }
-}
-`;
-
-// Добавляем стили в документ
-const styleSheet = document.createElement('style');
-styleSheet.textContent = mobileSearchStyles;
-document.head.appendChild(styleSheet);
